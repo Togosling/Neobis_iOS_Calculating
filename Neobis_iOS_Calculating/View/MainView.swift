@@ -38,6 +38,7 @@ class MainView: UIView {
         label.font = .systemFont(ofSize: 100)
         label.textColor = .white
         label.textAlignment = .right
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -114,22 +115,7 @@ class MainView: UIView {
                 answerlabel.text = "\(text)\(sender.tag)"
             }
             setButtonColorToDefault()
-        case 17:
-            if let text = answerlabel.text {
-                answerlabel.text = "\(text)."
-            }
-        case 16:
-            if let text = answerlabel.text, let value = Float(text) {
-                answerlabel.text = "\(value * (-1))"
-            }
-        case 18:
-            if let text = answerlabel.text, let value = Float(text) {
-                answerlabel.text = "\(value / 100)"
-            }
-        case 19:
-            answerlabel.text = "0"
-            setButtonColorToDefault()
-            
+            buttonAC.setTitle("C", for: .normal)
         case 11,12,13,14:
             if let text = answerlabel.text, let value = Float(text) {
                 operationPressed?(value,sender.tag)
@@ -146,6 +132,22 @@ class MainView: UIView {
                 operationPressed?(value,sender.tag)
             }
             setButtonColorToDefault()
+        case 16:
+            if let text = answerlabel.text, let value = Float(text) {
+                answerlabel.text = "\(value * (-1))"
+            }
+        case 17:
+            if let text = answerlabel.text {
+                answerlabel.text = "\(text)."
+            }
+        case 18:
+            if let text = answerlabel.text, let value = Float(text) {
+                operationPressed?(value, sender.tag)
+            }
+        case 19:
+            answerlabel.text = "0"
+            setButtonColorToDefault()
+            buttonAC.setTitle("AC", for: .normal)
         default: break
         }
         

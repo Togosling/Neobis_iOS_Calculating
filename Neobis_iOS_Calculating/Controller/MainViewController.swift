@@ -32,8 +32,8 @@ class MainViewController: UIViewController {
                 } else {
                     self?.calculator.left = self?.periodAnswer ?? 0
                     self?.calculator.right = Float(leftNumber)
-                    self?.calculator.operation = .plus
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
+                    self?.calculator.operation = .plus
                 }
             case 12:
                 if self?.periodAnswer == 0 {
@@ -42,8 +42,8 @@ class MainViewController: UIViewController {
                 } else {
                     self?.calculator.left = self?.periodAnswer ?? 0
                     self?.calculator.right = Float(leftNumber)
-                    self?.calculator.operation = .minus
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
+                    self?.calculator.operation = .minus
                 }
             case 13:
                 if self?.periodAnswer == 0 {
@@ -52,8 +52,8 @@ class MainViewController: UIViewController {
                 } else {
                     self?.calculator.left = self?.periodAnswer ?? 0
                     self?.calculator.right = Float(leftNumber)
-                    self?.calculator.operation = .multiply
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
+                    self?.calculator.operation = .multiply
                 }
             case 14:
                 if self?.periodAnswer == 0 {
@@ -62,25 +62,45 @@ class MainViewController: UIViewController {
                 } else {
                     self?.calculator.left = self?.periodAnswer ?? 0
                     self?.calculator.right = Float(leftNumber)
-                    self?.calculator.operation = .divide
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
+                    self?.calculator.operation = .divide
                 }
             case 15:
                 self?.calculator.right = Float(leftNumber)
                 self?.calculator.left = self?.periodAnswer ?? 0
                 self?.handleEqual()
                 self?.periodAnswer = 0
+            case 18:
+                self?.handlePercent(number: Float(leftNumber))
             default: ()
             }
         }
-        
     }
     
     fileprivate func handleEqual() {
-        let answer = calculator.calculate() 
-        let stringAnswer = String(answer)
-        mainView.answerlabel.text = stringAnswer
-        
+        let answer = calculator.calculate()
+        let intAnswer = Int(answer)
+        if answer - Float(intAnswer) != 0 {
+            let stringAnswer = String(answer)
+            mainView.answerlabel.text = stringAnswer
+        } else {
+            let stringAnswer = String(Int(answer))
+            mainView.answerlabel.text = stringAnswer
+
+        }
+    }
+    
+    fileprivate func handlePercent(number: Float) {
+        let answer = number / 100
+        let intAnswer = Int(answer)
+        if answer - Float(intAnswer) != 0 {
+            let stringAnswer = String(answer)
+            mainView.answerlabel.text = stringAnswer
+        } else {
+            let stringAnswer = String(Int(answer))
+            mainView.answerlabel.text = stringAnswer
+
+        }
     }
     
     fileprivate func setupView() {
