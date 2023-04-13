@@ -79,7 +79,7 @@ class MainViewController: UIViewController {
     
     fileprivate func handleEqual() {
         let answer = calculator.calculate()
-        let intAnswer = Int(answer)
+        let intAnswer = Int(answer) 
         if answer - Float(intAnswer) != 0 {
             let stringAnswer = String(answer)
             mainView.answerlabel.text = stringAnswer

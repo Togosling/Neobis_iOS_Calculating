@@ -134,7 +134,13 @@ class MainView: UIView {
             setButtonColorToDefault()
         case 16:
             if let text = answerlabel.text, let value = Float(text) {
-                answerlabel.text = "\(value * (-1))"
+                let result = value * (-1)
+                let intResult = Int(result)
+                if value + Float(intResult) != 0 {
+                    answerlabel.text = "\(value * (-1))"
+                } else {
+                    answerlabel.text = "\(Int(value) * (-1))"
+                }
             }
         case 17:
             if let text = answerlabel.text {
@@ -164,15 +170,12 @@ class MainView: UIView {
     
     fileprivate func setupViews() {
         
-        button1.configureButton(title: "1", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button2.configureButton(title: "2", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button3.configureButton(title: "3", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button4.configureButton(title: "4", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button5.configureButton(title: "5", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button6.configureButton(title: "6", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button7.configureButton(title: "7", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button8.configureButton(title: "8", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
-        button9.configureButton(title: "9", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
+        let buttons = [button1,button2,button3,button4,button5, button6, button7, button8, button9, buttonDot, buttonDivide, buttonMultiply, buttonEqual, buttonMinus, buttonPlus, buttonPlusMinus, buttonAC, buttonPercent]
+        
+        for i in 0 ..< 9 {
+            buttons[i].configureButton(title: "\(i+1)", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
+        }
+        
         button0.configureButton(title: "0", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
         buttonMultiply.configureButton(title: "*", tintColor: .white, backgroundColor: UIColor(red: 255/255, green: 159/255, blue: 12/255, alpha: 1))
         buttonDivide.configureButton(title: "/", tintColor: .white, backgroundColor: UIColor(red: 255/255, green: 159/255, blue: 12/255, alpha: 1))
@@ -184,89 +187,74 @@ class MainView: UIView {
         buttonDot.configureButton(title: ".", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
         buttonPercent.configureButton(title: "%", tintColor: .black, backgroundColor: UIColor(red: 165/255, green: 165/255, blue: 165/255, alpha: 1))
         
-        button1.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)}
-        button2.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-        button3.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-        button4.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)
-            button5.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-            button6.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-            button7.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)
-                button8.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                button9.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                button0.snp.makeConstraints { make in make.height.equalTo(self.frame.height / 10)
-                    make.width.equalTo(self.frame.height / 4.6)
-                }
-                buttonMultiply.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                buttonDivide.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                buttonPlus.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                buttonMinus.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                buttonPercent.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                buttonPlusMinus.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                buttonDot.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                buttonAC.snp.makeConstraints { make in make.height.equalTo(self.frame.height / 10)}
-                buttonEqual.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
-                
-                
-                addSubview(button0)
-                button0.snp.makeConstraints { make in
-                    make.bottom.equalToSuperview().offset(-(self.frame.height / 18.52))
-                    make.leading.equalToSuperview()
-                }
-                let bottomStackView = UIStackView(arrangedSubviews: [buttonDot, buttonEqual])
-                bottomStackView.axis = .horizontal
-                bottomStackView.spacing = 17
-                bottomStackView.distribution = .fillProportionally
-                addSubview(bottomStackView)
-                bottomStackView.snp.makeConstraints { make in
-                    make.bottom.equalTo(button0.snp.bottom)
-                    make.leading.equalTo(button0.snp.trailing).offset(17)
-                }
-                
-                let bottomUpStackView = UIStackView(arrangedSubviews: [button1, button2, button3, buttonPlus])
-                bottomUpStackView.axis = .horizontal
-                bottomUpStackView.spacing = 17
-                bottomUpStackView.distribution = .fillEqually
-                addSubview(bottomUpStackView)
-                bottomUpStackView.snp.makeConstraints { make in
-                    make.bottom.equalTo(bottomStackView.snp.top).offset(-12)
-                }
-                
-                let middleStackView = UIStackView(arrangedSubviews: [button4, button5, button6, buttonMinus])
-                middleStackView.axis = .horizontal
-                middleStackView.spacing = 17
-                middleStackView.distribution = .fillEqually
-                addSubview(middleStackView)
-                middleStackView.snp.makeConstraints { make in
-                    make.bottom.equalTo(bottomUpStackView.snp.top).offset(-12)
-                }
-                
-                let middleUpStackView = UIStackView(arrangedSubviews: [button7, button8, button9, buttonMultiply])
-                middleUpStackView.axis = .horizontal
-                middleUpStackView.spacing = 17
-                middleUpStackView.distribution = .fillEqually
-                addSubview(middleUpStackView)
-                middleUpStackView.snp.makeConstraints { make in
-                    make.bottom.equalTo(middleStackView.snp.top).offset(-12)
-                }
-                
-                let topStackView = UIStackView(arrangedSubviews: [buttonAC, buttonPlusMinus, buttonPercent, buttonDivide])
-                topStackView.axis = .horizontal
-                topStackView.spacing = 17
-                topStackView.distribution = .fillEqually
-                addSubview(topStackView)
-                topStackView.snp.makeConstraints { make in
-                    make.bottom.equalTo(middleUpStackView.snp.top).offset(-12)                    
-                }
-                
-                addSubview(answerlabel)
-                answerlabel.snp.makeConstraints { make in
-                    make.bottom.equalTo(topStackView.snp.top).offset(-20)
-                    make.trailing.equalToSuperview().offset(-20)
-                    make.leading.equalToSuperview()
-                    make.height.equalTo(90)
-                }
-                
-            }
+        buttons.forEach { button in
+            button.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)}
+            button.layer.cornerRadius = self.frame.height / 20
         }
+        
+        button0.snp.makeConstraints { make in make.height.equalTo(self.frame.height / 10)
+            make.width.equalTo(self.frame.height / 4.6)
+        }
+        
+        addSubview(button0)
+        button0.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-(self.frame.height / 18.52))
+            make.leading.equalToSuperview()
+        }
+        let bottomStackView = UIStackView(arrangedSubviews: [buttonDot, buttonEqual])
+        bottomStackView.axis = .horizontal
+        bottomStackView.spacing = 17
+        bottomStackView.distribution = .fillProportionally
+        addSubview(bottomStackView)
+        bottomStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(button0.snp.bottom)
+            make.leading.equalTo(button0.snp.trailing).offset(17)
+        }
+        
+        let bottomUpStackView = UIStackView(arrangedSubviews: [button1, button2, button3, buttonPlus])
+        bottomUpStackView.axis = .horizontal
+        bottomUpStackView.spacing = 17
+        bottomUpStackView.distribution = .fillEqually
+        addSubview(bottomUpStackView)
+        bottomUpStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(bottomStackView.snp.top).offset(-12)
+        }
+        
+        let middleStackView = UIStackView(arrangedSubviews: [button4, button5, button6, buttonMinus])
+        middleStackView.axis = .horizontal
+        middleStackView.spacing = 17
+        middleStackView.distribution = .fillEqually
+        addSubview(middleStackView)
+        middleStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(bottomUpStackView.snp.top).offset(-12)
+        }
+        
+        let middleUpStackView = UIStackView(arrangedSubviews: [button7, button8, button9, buttonMultiply])
+        middleUpStackView.axis = .horizontal
+        middleUpStackView.spacing = 17
+        middleUpStackView.distribution = .fillEqually
+        addSubview(middleUpStackView)
+        middleUpStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(middleStackView.snp.top).offset(-12)
+        }
+        
+        let topStackView = UIStackView(arrangedSubviews: [buttonAC, buttonPlusMinus, buttonPercent, buttonDivide])
+        topStackView.axis = .horizontal
+        topStackView.spacing = 17
+        topStackView.distribution = .fillEqually
+        addSubview(topStackView)
+        topStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(middleUpStackView.snp.top).offset(-12)
+        }
+        
+        addSubview(answerlabel)
+        answerlabel.snp.makeConstraints { make in
+            make.bottom.equalTo(topStackView.snp.top).offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview()
+            make.height.equalTo(90)
+        }
+        
     }
 }
+
