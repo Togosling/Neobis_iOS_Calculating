@@ -11,7 +11,6 @@ import SnapKit
 class MainView: UIView {
     
     var operationPressed: ((Float,Int) -> ())?
-    var equalPressed: ((Float) -> ())?
     
     let button1 =  UIButton(type: .system)
     let button2 =  UIButton(type: .system)
@@ -142,10 +141,9 @@ class MainView: UIView {
             } else {
                 sender.backgroundWhite()
             }
-
         case 15:
             if let text = answerlabel.text, let value = Float(text) {
-                equalPressed?(value)
+                operationPressed?(value,sender.tag)
             }
             setButtonColorToDefault()
         default: break

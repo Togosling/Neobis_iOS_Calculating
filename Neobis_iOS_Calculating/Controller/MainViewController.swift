@@ -65,16 +65,15 @@ class MainViewController: UIViewController {
                     self?.calculator.operation = .divide
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
                 }
+            case 15:
+                self?.calculator.right = Float(leftNumber)
+                self?.calculator.left = self?.periodAnswer ?? 0
+                self?.handleEqual()
+                self?.periodAnswer = 0
             default: ()
             }
         }
         
-        mainView.equalPressed = {[weak self] rightNumber in
-            self?.calculator.right = Float(rightNumber)
-            self?.calculator.left = self?.periodAnswer ?? 0
-            self?.handleEqual()
-            self?.periodAnswer = 0
-        }
     }
     
     fileprivate func handleEqual() {
