@@ -10,6 +10,9 @@ import SnapKit
 
 class MainView: UIView {
     
+    var operationPressed: ((Float,Int) -> ())?
+    var equalPressed: ((Float) -> ())?
+    
     let button1 =  UIButton(type: .system)
     let button2 =  UIButton(type: .system)
     let button3 =  UIButton(type: .system)
@@ -103,7 +106,7 @@ class MainView: UIView {
     }
     
     @objc func handleButtonTap(sender: UIButton) {
-        
+                
         switch sender.tag {
         case 0,1,2,3,4,5,6,7,8,9 :
             if answerlabel.text == "0" {
@@ -111,11 +114,52 @@ class MainView: UIView {
             } else if let text = answerlabel.text {
                 answerlabel.text = "\(text)\(sender.tag)"
             }
-        case 19: answerlabel.text = "0"
-        case 11,12,13,14,15,16,17,18: print("not done yet")
+            setButtonColorToDefault()
+        case 17:
+            if let text = answerlabel.text {
+                answerlabel.text = "\(text)."
+            }
+        case 16:
+            if let text = answerlabel.text, let value = Float(text) {
+                answerlabel.text = "\(value * (-1))"
+            }
+        case 18:
+            if let text = answerlabel.text, let value = Float(text) {
+                answerlabel.text = "\(value / 100)"
+            }
+        case 19:
+            answerlabel.text = "0"
+            setButtonColorToDefault()
+            
+        case 11,12,13,14:
+            if let text = answerlabel.text, let value = Float(text) {
+                operationPressed?(value,sender.tag)
+            }
+            answerlabel.text = "0"
+            setButtonColorToDefault()
+            if sender.backgroundColor == .white {
+                sender.backgroundOrange()
+            } else {
+                sender.backgroundWhite()
+            }
+
+        case 15:
+            if let text = answerlabel.text, let value = Float(text) {
+                equalPressed?(value)
+            }
+            setButtonColorToDefault()
         default: break
         }
         
+    }
+    
+    fileprivate func setButtonColorToDefault() {
+        
+        let opertationButtons = [buttonPlus, buttonDivide, buttonMinus, buttonMultiply]
+
+        opertationButtons.forEach { button in
+            button.backgroundOrange()
+        }
     }
     
     fileprivate func setupViews() {

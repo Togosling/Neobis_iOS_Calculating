@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5006F8FC8C1B7AEE2F22A70B /* Pods_Neobis_iOS_Calculating.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1300AA9AA0165D9A0FD298EC /* Pods_Neobis_iOS_Calculating.framework */; };
+		DC4DD9DB29E7D84300562433 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4DD9DA29E7D84300562433 /* Calculator.swift */; };
 		DCB4ED2C29E6A3E400B67112 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4ED2B29E6A3E400B67112 /* AppDelegate.swift */; };
 		DCB4ED2E29E6A3E400B67112 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4ED2D29E6A3E400B67112 /* SceneDelegate.swift */; };
 		DCB4ED3029E6A3E400B67112 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4ED2F29E6A3E400B67112 /* MainViewController.swift */; };
@@ -22,6 +23,7 @@
 		1300AA9AA0165D9A0FD298EC /* Pods_Neobis_iOS_Calculating.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neobis_iOS_Calculating.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		292761DF78A31C99B5664702 /* Pods-Neobis_iOS_Calculating.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_iOS_Calculating.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_iOS_Calculating/Pods-Neobis_iOS_Calculating.debug.xcconfig"; sourceTree = "<group>"; };
 		3A8B5F4A5C173FF28614901C /* Pods-Neobis_iOS_Calculating.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_iOS_Calculating.release.xcconfig"; path = "Target Support Files/Pods-Neobis_iOS_Calculating/Pods-Neobis_iOS_Calculating.release.xcconfig"; sourceTree = "<group>"; };
+		DC4DD9DA29E7D84300562433 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		DCB4ED2829E6A3E400B67112 /* Neobis_iOS_Calculating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_Calculating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB4ED2B29E6A3E400B67112 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCB4ED2D29E6A3E400B67112 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		DCB4ED4029E6C9F200B67112 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DC4DD9DA29E7D84300562433 /* Calculator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				DCB4ED4829E6D85700B67112 /* Helper.swift in Sources */,
 				DCB4ED2C29E6A3E400B67112 /* AppDelegate.swift in Sources */,
 				DCB4ED2E29E6A3E400B67112 /* SceneDelegate.swift in Sources */,
+				DC4DD9DB29E7D84300562433 /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
