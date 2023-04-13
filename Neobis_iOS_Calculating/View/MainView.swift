@@ -31,23 +31,31 @@ class MainView: UIView {
     let buttonPercent =  UIButton(type: .system)
     
     let answerlabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "0"
         label.font = .systemFont(ofSize: 100)
         label.textColor = .white
         label.textAlignment = .right
         return label
     }()
-
-        
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         
-        backgroundColor = .black
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super .layoutSubviews()
+        
+        backgroundColor = .black
+        
         setupViews()
         addTarget()
-                
+        
     }
     
     fileprivate func addTarget() {
@@ -132,93 +140,89 @@ class MainView: UIView {
         buttonDot.configureButton(title: ".", tintColor: .white, backgroundColor: UIColor(red: 97/255, green: 92/255, blue: 100/255, alpha: 1))
         buttonPercent.configureButton(title: "%", tintColor: .black, backgroundColor: UIColor(red: 165/255, green: 165/255, blue: 165/255, alpha: 1))
         
-        button1.snp.makeConstraints { make in make.height.equalTo(90)}
-        button2.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        button3.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        button4.snp.makeConstraints { make in make.height.equalTo(90)}
-        button5.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        button6.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        button7.snp.makeConstraints { make in make.height.equalTo(90)}
-        button8.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        button9.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        button0.snp.makeConstraints { make in make.height.equalTo(90)}
-        buttonMultiply.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        buttonDivide.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        buttonPlus.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        buttonMinus.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        buttonPercent.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        buttonPlusMinus.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        buttonDot.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        buttonAC.snp.makeConstraints { make in make.height.equalTo(90)}
-        buttonEqual.snp.makeConstraints { make in make.width.height.equalTo(90)}
-        
-        let bottomStackView = UIStackView(arrangedSubviews: [button0, buttonDot, buttonEqual])
-        bottomStackView.axis = .horizontal
-        bottomStackView.spacing = 12
-        addSubview(bottomStackView)
-        bottomStackView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-50)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-
+        button1.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)}
+        button2.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+        button3.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+        button4.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)
+            button5.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+            button6.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+            button7.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)
+                button8.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                button9.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                button0.snp.makeConstraints { make in make.height.equalTo(self.frame.height / 10)
+                    make.width.equalTo(self.frame.height / 4.6)
+                }
+                buttonMultiply.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                buttonDivide.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                buttonPlus.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                buttonMinus.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                buttonPercent.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                buttonPlusMinus.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                buttonDot.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                buttonAC.snp.makeConstraints { make in make.height.equalTo(self.frame.height / 10)}
+                buttonEqual.snp.makeConstraints { make in make.width.height.equalTo(self.frame.height / 10)}
+                
+                
+                addSubview(button0)
+                button0.snp.makeConstraints { make in
+                    make.bottom.equalToSuperview().offset(-(self.frame.height / 18.52))
+                    make.leading.equalToSuperview()
+                }
+                let bottomStackView = UIStackView(arrangedSubviews: [buttonDot, buttonEqual])
+                bottomStackView.axis = .horizontal
+                bottomStackView.spacing = 17
+                bottomStackView.distribution = .fillProportionally
+                addSubview(bottomStackView)
+                bottomStackView.snp.makeConstraints { make in
+                    make.bottom.equalTo(button0.snp.bottom)
+                    make.leading.equalTo(button0.snp.trailing).offset(17)
+                }
+                
+                let bottomUpStackView = UIStackView(arrangedSubviews: [button1, button2, button3, buttonPlus])
+                bottomUpStackView.axis = .horizontal
+                bottomUpStackView.spacing = 17
+                bottomUpStackView.distribution = .fillEqually
+                addSubview(bottomUpStackView)
+                bottomUpStackView.snp.makeConstraints { make in
+                    make.bottom.equalTo(bottomStackView.snp.top).offset(-12)
+                }
+                
+                let middleStackView = UIStackView(arrangedSubviews: [button4, button5, button6, buttonMinus])
+                middleStackView.axis = .horizontal
+                middleStackView.spacing = 17
+                middleStackView.distribution = .fillEqually
+                addSubview(middleStackView)
+                middleStackView.snp.makeConstraints { make in
+                    make.bottom.equalTo(bottomUpStackView.snp.top).offset(-12)
+                }
+                
+                let middleUpStackView = UIStackView(arrangedSubviews: [button7, button8, button9, buttonMultiply])
+                middleUpStackView.axis = .horizontal
+                middleUpStackView.spacing = 17
+                middleUpStackView.distribution = .fillEqually
+                addSubview(middleUpStackView)
+                middleUpStackView.snp.makeConstraints { make in
+                    make.bottom.equalTo(middleStackView.snp.top).offset(-12)
+                }
+                
+                let topStackView = UIStackView(arrangedSubviews: [buttonAC, buttonPlusMinus, buttonPercent, buttonDivide])
+                topStackView.axis = .horizontal
+                topStackView.spacing = 17
+                topStackView.distribution = .fillEqually
+                addSubview(topStackView)
+                topStackView.snp.makeConstraints { make in
+                    make.bottom.equalTo(middleUpStackView.snp.top).offset(-12)                    
+                }
+                
+                addSubview(answerlabel)
+                answerlabel.snp.makeConstraints { make in
+                    make.bottom.equalTo(topStackView.snp.top).offset(-20)
+                    make.trailing.equalToSuperview().offset(-20)
+                    make.leading.equalToSuperview()
+                    make.height.equalTo(90)
+                }
+                
+            }
         }
-        
-        let bottomUpStackView = UIStackView(arrangedSubviews: [button1, button2, button3, buttonPlus])
-        bottomUpStackView.axis = .horizontal
-        bottomUpStackView.spacing = 17
-        addSubview(bottomUpStackView)
-        bottomUpStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(bottomStackView.snp.top).offset(-12)
-            make.leading.equalTo(bottomStackView.snp.leading)
-            make.trailing.equalTo(bottomStackView.snp.trailing)
-
-        }
-
-        let middleStackView = UIStackView(arrangedSubviews: [button4, button5, button6, buttonMinus])
-        middleStackView.axis = .horizontal
-        middleStackView.spacing = 17
-        addSubview(middleStackView)
-        middleStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(bottomUpStackView.snp.top).offset(-12)
-            make.leading.equalTo(bottomUpStackView.snp.leading)
-            make.trailing.equalTo(bottomUpStackView.snp.trailing)
-
-        }
-
-        let middleUpStackView = UIStackView(arrangedSubviews: [button7, button8, button9, buttonMultiply])
-        middleUpStackView.axis = .horizontal
-        middleUpStackView.spacing = 17
-        addSubview(middleUpStackView)
-        middleUpStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(middleStackView.snp.top).offset(-12)
-            make.leading.equalTo(middleStackView.snp.leading)
-            make.trailing.equalTo(middleStackView.snp.trailing)
-
-        }
-
-        let topStackView = UIStackView(arrangedSubviews: [buttonAC, buttonPlusMinus, buttonPercent, buttonDivide])
-        topStackView.axis = .horizontal
-        topStackView.spacing = 17
-        addSubview(topStackView)
-        topStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(middleUpStackView.snp.top).offset(-12)
-            make.leading.equalTo(middleUpStackView.snp.leading)
-            make.trailing.equalTo(middleUpStackView.snp.trailing)
-
-        }
-        
-        addSubview(answerlabel)
-        answerlabel.snp.makeConstraints { make in
-            make.bottom.equalTo(topStackView.snp.top).offset(-20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.leading.equalToSuperview()
-            make.height.equalTo(90)
-        }
-
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
