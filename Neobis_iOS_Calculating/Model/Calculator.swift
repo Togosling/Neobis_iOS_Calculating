@@ -13,7 +13,7 @@ struct Calculator {
     var left: Float
     var right: Float
     var operation: Operation
-
+    
     func calculate() -> Float {
         switch operation {
         case .plus:
@@ -24,8 +24,8 @@ struct Calculator {
             return left * right
         case .divide:
             return left / right
+        }
     }
-    
 }
 
 enum Operation {
