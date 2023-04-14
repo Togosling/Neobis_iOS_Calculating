@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MainView: UIView {
-    
+        
     var operationPressed: ((Float,Int) -> ())?
     
     let button1 =  UIButton(type: .system)
@@ -42,9 +42,10 @@ class MainView: UIView {
         return label
     }()
     
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
-        
+
     }
     
     required init?(coder: NSCoder) {
@@ -55,54 +56,22 @@ class MainView: UIView {
         super .layoutSubviews()
         
         backgroundColor = .black
-        
         setupViews()
         addTarget()
-        
     }
+    
     
     fileprivate func addTarget() {
         
-        button1.tag = 1
-        button2.tag = 2
-        button3.tag = 3
-        button4.tag = 4
-        button5.tag = 5
-        button6.tag = 6
-        button7.tag = 7
-        button8.tag = 8
-        button9.tag = 9
-        button0.tag = 0
-        buttonDivide.tag = 14
-        buttonMinus.tag = 12
-        buttonDot.tag = 17
-        buttonEqual.tag = 15
-        buttonMultiply.tag = 13
-        buttonPlus.tag = 11
-        buttonPlusMinus.tag = 16
-        buttonAC.tag = 19
-        buttonPercent.tag = 18
+        let buttons = [button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,buttonPlus,buttonMinus,buttonMultiply,buttonDivide,buttonEqual,buttonDot,buttonPlusMinus,buttonAC, buttonPercent]
         
-        button1.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button2.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button3.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button4.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button5.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button6.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button7.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button8.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button9.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        button0.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonDivide.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonMinus.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonDot.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonEqual.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonMultiply.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonPlus.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonPlusMinus.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonAC.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        buttonPercent.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
+        for i in 0 ..< buttons.count {
+            buttons[i].tag = i
+        }
         
+        for button in buttons {
+            button.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
+        }
     }
     
     @objc func handleButtonTap(sender: UIButton) {
@@ -116,7 +85,7 @@ class MainView: UIView {
             }
             setButtonColorToDefault()
             buttonAC.setTitle("C", for: .normal)
-        case 11,12,13,14:
+        case 10,11,12,13:
             if let text = answerlabel.text, let value = Float(text) {
                 operationPressed?(value,sender.tag)
             }
@@ -127,7 +96,7 @@ class MainView: UIView {
             } else {
                 sender.backgroundWhite()
             }
-        case 15:
+        case 14:
             if let text = answerlabel.text, let value = Float(text) {
                 operationPressed?(value,sender.tag)
             }
@@ -142,7 +111,7 @@ class MainView: UIView {
                     answerlabel.text = "\(Int(value) * (-1))"
                 }
             }
-        case 17:
+        case 15:
             if let text = answerlabel.text {
                 answerlabel.text = "\(text)."
             }
@@ -150,7 +119,7 @@ class MainView: UIView {
             if let text = answerlabel.text, let value = Float(text) {
                 operationPressed?(value, sender.tag)
             }
-        case 19:
+        case 17:
             answerlabel.text = "0"
             setButtonColorToDefault()
             buttonAC.setTitle("AC", for: .normal)
@@ -188,17 +157,17 @@ class MainView: UIView {
         buttonPercent.configureButton(title: "%", tintColor: .black, backgroundColor: UIColor(red: 165/255, green: 165/255, blue: 165/255, alpha: 1))
         
         buttons.forEach { button in
-            button.snp.makeConstraints { make in make.height.width.equalTo(self.frame.height / 10)}
-            button.layer.cornerRadius = self.frame.height / 20
+            button.snp.makeConstraints { make in make.height.width.equalTo(flexibleHeight(to: 92.6))}
+            button.layer.cornerRadius = flexibleHeight(to: 46.3)
         }
         
-        button0.snp.makeConstraints { make in make.height.equalTo(self.frame.height / 10)
-            make.width.equalTo(self.frame.height / 4.6)
+        button0.snp.makeConstraints { make in make.height.equalTo(flexibleHeight(to: 92.6))
+            make.width.equalTo(flexibleHeight(to: 201.3))
         }
-        
+        button0.layer.cornerRadius = flexibleHeight(to: 46.3)
         addSubview(button0)
         button0.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-(self.frame.height / 18.52))
+            make.bottom.equalToSuperview().offset(-(flexibleHeight(to: 50)))
             make.leading.equalToSuperview()
         }
         let bottomStackView = UIStackView(arrangedSubviews: [buttonDot, buttonEqual])

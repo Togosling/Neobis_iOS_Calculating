@@ -16,7 +16,8 @@
 		DCB4ED3529E6A3E600B67112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB4ED3429E6A3E600B67112 /* Assets.xcassets */; };
 		DCB4ED3829E6A3E600B67112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB4ED3629E6A3E600B67112 /* LaunchScreen.storyboard */; };
 		DCB4ED4429E6CABF00B67112 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4ED4329E6CABF00B67112 /* MainView.swift */; };
-		DCB4ED4829E6D85700B67112 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4ED4729E6D85700B67112 /* Helper.swift */; };
+		DCB4ED4829E6D85700B67112 /* ButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4ED4729E6D85700B67112 /* ButtonHelper.swift */; };
+		DCBA41D229E9466B0051F2A8 /* FlexibleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA41D129E9466B0051F2A8 /* FlexibleLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +34,8 @@
 		DCB4ED3729E6A3E600B67112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCB4ED3929E6A3E600B67112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCB4ED4329E6CABF00B67112 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		DCB4ED4729E6D85700B67112 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		DCB4ED4729E6D85700B67112 /* ButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonHelper.swift; sourceTree = "<group>"; };
+		DCBA41D129E9466B0051F2A8 /* FlexibleLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +137,8 @@
 		DCDAEA2829E6DBF900CADC7B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DCB4ED4729E6D85700B67112 /* Helper.swift */,
+				DCB4ED4729E6D85700B67112 /* ButtonHelper.swift */,
+				DCBA41D129E9466B0051F2A8 /* FlexibleLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -257,7 +260,8 @@
 			files = (
 				DCB4ED3029E6A3E400B67112 /* MainViewController.swift in Sources */,
 				DCB4ED4429E6CABF00B67112 /* MainView.swift in Sources */,
-				DCB4ED4829E6D85700B67112 /* Helper.swift in Sources */,
+				DCB4ED4829E6D85700B67112 /* ButtonHelper.swift in Sources */,
+				DCBA41D229E9466B0051F2A8 /* FlexibleLayout.swift in Sources */,
 				DCB4ED2C29E6A3E400B67112 /* AppDelegate.swift in Sources */,
 				DCB4ED2E29E6A3E400B67112 /* SceneDelegate.swift in Sources */,
 				DC4DD9DB29E7D84300562433 /* Calculator.swift in Sources */,

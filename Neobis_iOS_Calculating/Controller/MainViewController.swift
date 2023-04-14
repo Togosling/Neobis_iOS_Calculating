@@ -16,16 +16,14 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-        
         calculating()
     }
     
     fileprivate func calculating() {
         mainView.operationPressed = {[weak self] (leftNumber, operation) in
             switch operation{
-            case 11:
+            case 10:
                 if self?.periodAnswer == 0 {
                     self?.periodAnswer = Float(leftNumber)
                     self?.calculator.operation = .plus
@@ -34,38 +32,38 @@ class MainViewController: UIViewController {
                     self?.calculator.right = Float(leftNumber)
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
                     self?.calculator.operation = .plus
+                }
+            case 11:
+                if self?.periodAnswer == 0 {
+                    self?.periodAnswer = Float(leftNumber)
+                    self?.calculator.operation = .minus
+                } else {
+                    self?.calculator.left = self?.periodAnswer ?? 0
+                    self?.calculator.right = Float(leftNumber)
+                    self?.periodAnswer = self?.calculator.calculate() ?? 0
+                    self?.calculator.operation = .minus
                 }
             case 12:
                 if self?.periodAnswer == 0 {
                     self?.periodAnswer = Float(leftNumber)
-                    self?.calculator.operation = .minus
+                    self?.calculator.operation = .multiply
                 } else {
                     self?.calculator.left = self?.periodAnswer ?? 0
                     self?.calculator.right = Float(leftNumber)
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
-                    self?.calculator.operation = .minus
+                    self?.calculator.operation = .multiply
                 }
             case 13:
                 if self?.periodAnswer == 0 {
                     self?.periodAnswer = Float(leftNumber)
-                    self?.calculator.operation = .multiply
+                    self?.calculator.operation = .divide
                 } else {
                     self?.calculator.left = self?.periodAnswer ?? 0
                     self?.calculator.right = Float(leftNumber)
                     self?.periodAnswer = self?.calculator.calculate() ?? 0
-                    self?.calculator.operation = .multiply
+                    self?.calculator.operation = .divide
                 }
             case 14:
-                if self?.periodAnswer == 0 {
-                    self?.periodAnswer = Float(leftNumber)
-                    self?.calculator.operation = .divide
-                } else {
-                    self?.calculator.left = self?.periodAnswer ?? 0
-                    self?.calculator.right = Float(leftNumber)
-                    self?.periodAnswer = self?.calculator.calculate() ?? 0
-                    self?.calculator.operation = .divide
-                }
-            case 15:
                 self?.calculator.right = Float(leftNumber)
                 self?.calculator.left = self?.periodAnswer ?? 0
                 self?.handleEqual()
